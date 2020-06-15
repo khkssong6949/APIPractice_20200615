@@ -53,12 +53,12 @@ class ServerUtil {
 //                    본문 String을 => JSON형태로 변환 => 변수에 저장
                     val json = JSONObject(bodyString)
                     Log.d("JSON응답", json.toString())
+
+//                    JSON 파싱은 화면에서 진행하도록 처리(인터페이스의 역할
+                    handler?.onResponse(json)
                 }
-
-
             })
         }
-
     }
 
 
