@@ -40,8 +40,10 @@ class LoginActivity : BaseActivitiy() {
 //                         인터넷 => 백그라운드 쓰레드 => UI 접근 => 강제종료
 //                        UI쓰레드가 => 토스트를 띄우도록
 
+                        val message = json.getString("message")
+
                         runOnUiThread {
-                            Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                         }
 
                     }
