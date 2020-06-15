@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "APIPractice_20200615"
