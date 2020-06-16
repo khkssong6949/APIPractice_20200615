@@ -20,7 +20,7 @@
         >
 
         <EditText
-            android:id="@+id/emilEdt"
+            android:id="@+id/emailEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="로그인 아이디로 사용됩니다."
@@ -35,11 +35,64 @@
 
     </FrameLayout>
 
+
     <TextView
         android:id="@+id/emailCheckResultTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이메일 중복검사를 해주세요."/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+
+        <EditText
+            android:id="@+id/nickNameEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="닉네임으로 사용됩니다."
+            android:inputType="textEmailAddress"/>
+
+        <Button
+            android:id="@+id/nickCheckBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="중복확인"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/nickNameCheckResultTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임 중복검사를 해주세요." />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/passwordEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="8글자 이상으로 해주세요." />
+
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입" />
+
+
+
 
 
 </LinearLayout>

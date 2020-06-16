@@ -108,6 +108,52 @@ class ServerUtil {
 
 
         }
+        // 회원가입 기능을 put으로 요청하는 함수
+        fun putRequestSignUp(context:Context, email: String, pw: String, nickName:String, handler: JsonResponseHandler?) {
+
+            val client = OkHttpClient()
+
+            val urlString = "${BASE_URL}/user"
+
+            val formData = FormBody.Builder()
+                .add("email", email)
+                .add("password", pw)
+                .add("nick_name", nickName)
+                .build()
+
+
+            val request = Request.Builder()
+                .url(urlString)
+                .put(formData)
+//                .header()  // API에서 헤더를 요구하면 여기서 첨부.
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+//                    연결 자체에 실패한 경우
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+//                    서버 연결 성공 => 어떤 내용이던 응답은 받은 경우
+//                    서버의 응답중 본문을 String으로 저장
+                    val bodyString = response.body!!.string()
+
+//                    본문 String을 => JSON형태로 변환 => 변수에 저장
+                    val json = JSONObject(bodyString)
+                    Log.d("JSON응답", json.toString())
+
+//                    JSON 파싱은 => 화면에서 진행하도록 처리. (인터페이스의 역할)
+                    handler?.onResponse(json)
+
+                }
+
+            })
+
+
+        }
+
+
+
     }
 
     //    서버 통신의 응답 내용을 Activity에 전달해주는 인터페이스
