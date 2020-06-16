@@ -43,7 +43,7 @@ class LoginActivity : BaseActivitiy() {
                         val message = json.getString("message")
 
                         runOnUiThread {
-                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
                         }
 
                     }
