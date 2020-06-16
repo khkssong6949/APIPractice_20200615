@@ -3,6 +3,7 @@ package com.hgney.apipractice_20200615
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import com.hgney.apipractice_20200615.utils.ContextUtil
 import com.hgney.apipractice_20200615.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -40,6 +41,20 @@ class LoginActivity : BaseActivitiy() {
 
                     if (codeNumber == 200) {
 //                        로그인 성공
+//                        성공시 내려주는 토큰값 추출 (token변수에 저장)
+                        val data = json.getJSONObject("data")
+                        val token = data.getString("token")
+
+//                        폰에 아예 저장해두는게 편리함. => ContextUtil에 저장기능.
+                        ContextUtil.setUserToken(mContext, token)
+
+                        //                        Intent로 메인화면 진입 => finish
+                        val myIntent = Intent(mContext, MainActivity::class.java)
+                        startActivity(myIntent)
+
+                        finish()
+
+
                     } else {
 //                        로그인 실패
 //                        UI반영 : 토스트로 "로그인 실패" 출력
@@ -51,12 +66,8 @@ class LoginActivity : BaseActivitiy() {
                         runOnUiThread {
                             Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
                         }
-
                     }
-
-
                 }
-
             })
         }
 
