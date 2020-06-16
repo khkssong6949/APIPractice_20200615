@@ -1,5 +1,6 @@
 package com.hgney.apipractice_20200615
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.hgney.apipractice_20200615.utils.ServerUtil
@@ -17,6 +18,11 @@ class LoginActivity : BaseActivitiy() {
     }
 
     override fun setupEvents() {
+
+        signUpBtn.setOnClickListener {
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
+        }
 
         loginBtn.setOnClickListener {
             val email = emailEdt.text.toString()
