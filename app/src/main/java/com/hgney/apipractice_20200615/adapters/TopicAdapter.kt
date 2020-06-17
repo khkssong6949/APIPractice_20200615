@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.hgney.apipractice_20200615.R
 import com.hgney.apipractice_20200615.datas.Topic
 
@@ -34,6 +35,8 @@ class TopicAdapter(context: Context, resId: Int, list: List<Topic>) : ArrayAdapt
         val data = mList[position]
 
         topicTitleTxt.text = data.title
+
+        Glide.with(mContext).load(data.imageUrl).into(topicImg)
 
         return row
     }
