@@ -2,6 +2,7 @@ package com.hgney.apipractice_20200615
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.hgney.apipractice_20200615.utils.ContextUtil
 import com.hgney.apipractice_20200615.utils.ServerUtil
@@ -19,6 +20,19 @@ class LoginActivity : BaseActivitiy() {
     }
 
     override fun setupEvents() {
+
+        //        자동로그인 체크박스의 값 변화 이벤트
+        autoLoginCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            Log.d("체크박스값", isChecked.toString())
+
+//            체크가 됐다면 (isChecked = true) => ContextUtil로 자동로그인 true로 저장
+//            체크가 해제됐다면 (isChecked = false) => ContextUtil로 자동로그인 false로 저장
+
+            ContextUtil.setAutoLogin(mContext, isChecked)
+
+        }
+
+
 
         signUpBtn.setOnClickListener {
             val myIntent = Intent(mContext, SignUpActivity::class.java)
