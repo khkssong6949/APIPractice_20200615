@@ -103,44 +103,46 @@ class ServerUtil {
         }
 
 //        메인화면에 필요한 정보를 get으로 요청하는 함수
-        fun getRequestMainInfo(context: Context, handler: JsonResponseHandler?) {
+//        메인화면에 필요한 정보를 get으로 요청하는 함수
+fun getRequestMainInfo(context: Context, handler: JsonResponseHandler?) {
 
-            val client = OkHttpClient()
+    val client = OkHttpClient()
 
-            val urlBuilder = "${BASE_URL}/v2/main_info".toHttpUrlOrNull()!!.newBuilder()
+    val urlBuilder = "${BASE_URL}/v2/main_info".toHttpUrlOrNull()!!.newBuilder()
 //            urlBuilder.addEncodedQueryParameter("type", type)
 //            urlBuilder.addEncodedQueryParameter("value", input)
 
-            val urlString = urlBuilder.build().toString()
+    val urlString = urlBuilder.build().toString()
 
-            val request = Request.Builder()
-                .url(urlString)
-                .get()
-                .header("X-Http-Token", ContextUtil.getUserToken(context)) // 헤더 필요시 첨부
-                .build()
+    val request = Request.Builder()
+        .url(urlString)
+        .get()
+        .header("X-Http-Token", ContextUtil.getUserToken(context)) // 헤더 필요시 첨부
+        .build()
 
-            client.newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    //                    연결 자체에 실패한 경우
-                }
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            //                    연결 자체에 실패한 경우
+        }
 
-                override fun onResponse(call: Call, response: Response) {
-                    //                    서버 연결 성공 => 어떤 내용이던 응답은 받은 경우
-                    //                    서버의 응답중 본문을 String으로 저장
-                    val bodyString = response.body!!.string()
+        override fun onResponse(call: Call, response: Response) {
+            //                    서버 연결 성공 => 어떤 내용이던 응답은 받은 경우
+            //                    서버의 응답중 본문을 String으로 저장
+            val bodyString = response.body!!.string()
 
-                    //                    본문 String을 => JSON형태로 변환 => 변수에 저장
-                    val json = JSONObject(bodyString)
-                    Log.d("JSON응답", json.toString())
+            //                    본문 String을 => JSON형태로 변환 => 변수에 저장
+            val json = JSONObject(bodyString)
+            Log.d("JSON응답", json.toString())
 
-                    //                    JSON 파싱은 => 화면에서 진행하도록 처리. (인터페이스의 역할)
-                    handler?.onResponse(json)
-
-                }
-
-            })
+            //                    JSON 파싱은 => 화면에서 진행하도록 처리. (인터페이스의 역할)
+            handler?.onResponse(json)
 
         }
+
+    })
+
+}
+
 
 
         //        로그인 기능을 post로 요청하는 함수

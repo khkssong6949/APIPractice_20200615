@@ -18,17 +18,14 @@ class MainActivity : BaseActivitiy() {
     }
     override fun setValues() {
 //        로그인한 사용자 정보를 서버에서 불러오기.
-        ServerUtil.getRequestUserInfo(mContext, object : ServerUtil.JsonResponseHandler {
+        ServerUtil.getRequestMainInfo(mContext, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(json: JSONObject) {
 
                 val data = json.getJSONObject("data")
-                val user = data.getJSONObject("user")
+                val topics = data.getJSONArray("topics")
 
-                val loginUser = User.getUserFromJson(user)
-
-                runOnUiThread {
-                    userNickNameTxt.text = loginUser.nickName
-                    userEmailTxt.text = loginUser.email
+                for (i in 0..topics.length()-1) {
+                    val topicJson = topics.getJSONObject(i)
                 }
 
             }
