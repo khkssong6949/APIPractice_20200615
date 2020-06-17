@@ -1,10 +1,14 @@
 package com.hgney.apipractice_20200615
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.hgney.apipractice_20200615.adapters.TopicAdapter
 import com.hgney.apipractice_20200615.datas.Topic
 import com.hgney.apipractice_20200615.datas.User
+import com.hgney.apipractice_20200615.utils.ContextUtil
 import com.hgney.apipractice_20200615.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
@@ -21,6 +25,35 @@ class MainActivity : BaseActivitiy() {
         setValues()
     }
     override fun setupEvents() {
+
+        //        응용문제.
+//        로그아웃 버튼이 눌리면 => 정말 로그아웃할건지 확인을 받자.
+//        확인버튼을 누르면 실제 로그아웃 처리 진행.
+//        저장된  토큰을 다시 빈칸으로 돌려주자. (로그아웃)
+//        메인액티비티 종료 => 로그인화면으로 이동
+
+        logoutBtn.setOnClickListener {
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setTitle("로그아웃")
+            alert.setMessage("정말 로그아웃 하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+
+//                저장 안되있을때의 기본값으로 세팅 (없던것과 동일하게 처리)
+                ContextUtil.setUserToken(mContext, "")
+
+                val myIntent = Intent(mContext, LoginActivity::class.java)
+                startActivity(myIntent)
+
+                finish()
+
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
+
+        }
+
+
     }
     override fun setValues() {
 
