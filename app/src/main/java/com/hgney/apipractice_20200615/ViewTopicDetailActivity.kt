@@ -3,7 +3,10 @@ package com.hgney.apipractice_20200615
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.hgney.apipractice_20200615.datas.Topic
 import com.hgney.apipractice_20200615.utils.ServerUtil
+import kotlinx.android.synthetic.main.activity_view_topic_detail.*
 import org.json.JSONObject
 
 class ViewTopicDetailActivity : BaseActivitiy() {
@@ -12,6 +15,9 @@ class ViewTopicDetailActivity : BaseActivitiy() {
     //    -1 ? 정상적인 id는 절대 -1일 수 없다.
 //    만약 이 값이 계속 -1이라면 => 잘못 받아왔거나 등의 예외처리.
     var mTopicId = -1
+
+    //    서버에서 받아온 주제 정보를 저장할 멤버변수
+    lateinit var mTopic : Topic
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +51,17 @@ class ViewTopicDetailActivity : BaseActivitiy() {
 
         ServerUtil.getRequestTopicDetail(mContext, mTopicId, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(json: JSONObject) {
+
+                val data = json.getJSONObject("data")
+                val topic = data.getJSONObject("topic")
+
+                val topicObj = Topic.getTopicFromJson(topic)
+                mTopic = topicObj
+
+                runOnUiThread {
+                    topicTitleTxt.text = mTopic.title
+                    Glide.with(mContext).load(mTopic.imageUrl).into(topicImg)
+                }
 
 
 
