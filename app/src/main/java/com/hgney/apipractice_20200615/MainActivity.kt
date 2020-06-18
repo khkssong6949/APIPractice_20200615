@@ -26,6 +26,13 @@ class MainActivity : BaseActivitiy() {
     }
     override fun setupEvents() {
 
+
+        topicListView.setOnItemClickListener { parent, view, position, id ->
+            val myIntent = Intent(mContext, ViewTopicDetailActivity::class.java)
+            startActivity(myIntent)
+        }
+
+
         //        응용문제.
 //        로그아웃 버튼이 눌리면 => 정말 로그아웃할건지 확인을 받자.
 //        확인버튼을 누르면 실제 로그아웃 처리 진행.
