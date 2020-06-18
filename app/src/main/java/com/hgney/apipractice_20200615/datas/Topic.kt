@@ -15,6 +15,12 @@ class Topic {
             topic.title = json.getString("title")
             topic.imageUrl = json.getString("img_url")
 
+//            선택 가능 진영 정보 파싱 => JSONArray 파싱부터
+            val sides = json.getJSONArray("sides")
+            for (i in 0..sides.length()-1){
+                val side = sides.getJSONObject(i)
+            }
+
             return topic
         }
     }
