@@ -64,7 +64,7 @@
                 android:textSize="16sp"/>
 
             <Button
-                android:id="@+id/voteToFirstBtn"
+                android:id="@+id/voteToFirstSideBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="투표하기"
@@ -104,7 +104,7 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"/>
             <Button
-                android:id="@+id/voteToSecondBtn"
+                android:id="@+id/voteToSecondSideBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="투표하기"

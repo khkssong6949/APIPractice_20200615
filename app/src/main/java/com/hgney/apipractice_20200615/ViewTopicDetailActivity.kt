@@ -27,29 +27,30 @@ class ViewTopicDetailActivity : BaseActivitiy() {
         setValues()
     }
 
-
     override fun setupEvents() {
 
-        voteToFirstBtn.setOnClickListener {
+        voteToFirstSideBtn.setOnClickListener {
 
             ServerUtil.postRequestVote(mContext, mTopic.sideList[0].id, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(json: JSONObject) {
+
+                    getTopicDetailFromServer()
 
                 }
             })
         }
 
-        voteToSecondBtn.setOnClickListener {
+        voteToSecondSideBtn.setOnClickListener {
             ServerUtil.postRequestVote(mContext, mTopic.sideList[1].id, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(json: JSONObject) {
+
+                    getTopicDetailFromServer()
 
                 }
             })
         }
 
     }
-
-
 
     override fun setValues() {
 
@@ -86,6 +87,24 @@ class ViewTopicDetailActivity : BaseActivitiy() {
 
                     firstSideVoteCountTxt.text = "${mTopic.sideList[0].voteCount}표"
                     secondSideVoteCountTxt.text = "${mTopic.sideList[1].voteCount}표"
+
+
+//                    내가 투표를 어디에 했냐에 따라 다른 문구로 버튼 변경
+
+                    if (mTopic.mySelectedSideIndex == -1) {
+//                        아무데도 투표를 안한경우
+                        voteToFirstSideBtn.text = "투표하기"
+                        voteToSecondSideBtn.text = "투표하기"
+                    }
+                    else if (mTopic.mySelectedSideIndex == 0) {
+                        voteToFirstSideBtn.text = "투표취소"
+                        voteToSecondSideBtn.text = "갈아타기"
+                    }
+                    else {
+                        voteToFirstSideBtn.text = "갈아타기"
+                        voteToSecondSideBtn.text = "투표취소"
+                    }
+
                 }
 
             }
