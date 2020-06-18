@@ -46,6 +46,26 @@ class SignUpActivity : BaseActivitiy() {
 
         })
 
+//          닉네임 검사 결과도, 입력값이 변경되면 재검사 요구.
+        nickNameEdt.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                nickNameCheckResultTxt.text = "닉네임 중복검사를 해주세요."
+                isNickNameOk = false
+            }
+
+        })
+
+
+
+
 
         emailCheckBtn.setOnClickListener {
 //            입력한 이메일 받아오기
