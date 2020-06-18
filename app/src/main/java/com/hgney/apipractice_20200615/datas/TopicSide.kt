@@ -17,7 +17,7 @@ class TopicSide {
             ts.id = json.getInt("id")
             ts.TopicId = json.getInt("topic_id")
             ts.title = json.getString("title")
-            ts.voteCount = json.getInt("voteCount")
+            ts.voteCount = json.getInt("vote_count")
             return ts
         }
     }

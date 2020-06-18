@@ -30,6 +30,14 @@ class ViewTopicDetailActivity : BaseActivitiy() {
 
     override fun setupEvents() {
 
+        voteToFirstBtn.setOnClickListener {
+            mTopic.sideList[0].id
+        }
+
+        voteToSecondBtn.setOnClickListener {
+            mTopic.sideList[1].id
+        }
+
     }
 
     override fun setValues() {
@@ -64,6 +72,9 @@ class ViewTopicDetailActivity : BaseActivitiy() {
 
                     firstSideTitle.text = mTopic.sideList[0].title
                     secondSideTitle.text = mTopic.sideList[1].title
+
+                    firstSideVoteCountTxt.text = "${mTopic.sideList[0].voteCount}표"
+                    secondSideVoteCountTxt.text = "${mTopic.sideList[1].voteCount}표"
                 }
 
 

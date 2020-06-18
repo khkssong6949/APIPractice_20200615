@@ -143,10 +143,9 @@ class ServerUtil {
         }
 
 
-
         //        메인화면에 필요한 정보를 get으로 요청하는 함수
 //        메인화면에 필요한 정보를 get으로 요청하는 함수
-fun getRequestMainInfo(context: Context, handler: JsonResponseHandler?) {
+        fun getRequestMainInfo(context: Context, handler: JsonResponseHandler?) {
 
     val client = OkHttpClient()
 
@@ -184,8 +183,6 @@ fun getRequestMainInfo(context: Context, handler: JsonResponseHandler?) {
     })
 
 }
-
-
 
         //        로그인 기능을 post로 요청하는 함수
         //        로그인 기능을 post로 요청하는 함수
